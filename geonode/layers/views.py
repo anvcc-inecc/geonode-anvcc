@@ -38,7 +38,7 @@ from django.utils.html import escape
 from django.forms.utils import ErrorList
 from django.contrib.auth import get_user_model
 from django.template.loader import get_template
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.core.exceptions import PermissionDenied
 from django.forms.models import inlineformset_factory
 from django.template.response import TemplateResponse

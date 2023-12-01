@@ -32,7 +32,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.defaultfilters import filesizeformat
 

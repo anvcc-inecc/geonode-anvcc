@@ -44,7 +44,7 @@ from django.shortcuts import render
 from django.utils.html import escape
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
 
 from geonode.base import enumerations

@@ -48,7 +48,7 @@ from django.db.models import Max
 from django.db import transaction
 from django.db.utils import IntegrityError
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from geonode import GeoNodeException
 from geonode.base import enumerations

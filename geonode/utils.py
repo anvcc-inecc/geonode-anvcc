@@ -68,7 +68,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.exceptions import ImproperlyConfigured
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models, connection, transaction
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from geonode import geoserver, GeoNodeException  # noqa
 from geonode.compat import ensure_string
@@ -1378,7 +1378,7 @@ def get_legend_url(
 def set_resource_default_links(instance, layer, prune=False, **kwargs):
     from geonode.base.models import Link
     from django.urls import reverse
-    from django.utils.translation import ugettext
+    from django.utils.translation import gettext
     from geonode.layers.models import Dataset
     from geonode.documents.models import Document
 
@@ -1482,7 +1482,7 @@ def set_resource_default_links(instance, layer, prune=False, **kwargs):
             try:
                 Link.objects.update_or_create(
                     resource=instance.resourcebase_ptr,
-                    name=ugettext(name),
+                    name=gettext(name),
                     defaults=dict(
                         extension=ext,
                         url=wms_url,
@@ -1492,7 +1492,7 @@ def set_resource_default_links(instance, layer, prune=False, **kwargs):
                 )
             except Link.MultipleObjectsReturned:
                 _d = dict(extension=ext, url=wms_url, mime=mime, link_type="image")
-                Link.objects.filter(resource=instance.resourcebase_ptr, name=ugettext(name), link_type="image").update(
+                Link.objects.filter(resource=instance.resourcebase_ptr, name=gettext(name), link_type="image").update(
                     **_d
                 )
 

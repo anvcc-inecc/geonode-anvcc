@@ -27,7 +27,7 @@ from modeltranslation.forms import TranslationModelForm
 from django import forms
 from django.conf import settings
 from django.forms import HiddenInput
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.contrib.contenttypes.models import ContentType
 from django.template.defaultfilters import filesizeformat
 
