@@ -576,7 +576,7 @@ class CommonModelApi(ModelResource):
     def prepend_urls(self):
         if settings.HAYSTACK_SEARCH:
             return [
-                url(
+                re_path(
                     r"^(?P<resource_name>{})/search{}$".format(self._meta.resource_name, trailing_slash()),
                     self.wrap_view("get_search"),
                     name="api_get_search",

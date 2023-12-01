@@ -19,8 +19,7 @@
 
 from django.apps import AppConfig
 from django.conf import settings
-from django.conf.urls import url, include
-
+from django.urls import include, re_path
 from . import config
 
 

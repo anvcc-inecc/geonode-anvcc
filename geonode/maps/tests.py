@@ -217,7 +217,7 @@ community."
 
         # Test that an invalid layer.alternate is handled for properly
         response = self.client.post(
-            url(invalid_mapid), data=json.dumps(self.perm_spec), content_type="application/json"
+            re_path(invalid_mapid), data=json.dumps(self.perm_spec), content_type="application/json"
         )
         self.assertNotEqual(response.status_code, 200)
 

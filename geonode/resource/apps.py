@@ -17,7 +17,7 @@
 #
 #########################################################################
 from django.apps import AppConfig
-from django.conf.urls import url, include
+from django.urls import include, re_path
 
 
 class GeoNodeResourceConfig(AppConfig):
