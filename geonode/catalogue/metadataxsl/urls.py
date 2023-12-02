@@ -20,4 +20,4 @@
 from django.urls import re_path
 from . import views
 
-urlpatterns = [url(r"^xsl/(?P<id>\d+)$", views.prefix_xsl_line, name="prefix_xsl_line")]
+urlpatterns = [re_path(r"^xsl/(?P<id>\d+)$", views.prefix_xsl_line, name="prefix_xsl_line")]
