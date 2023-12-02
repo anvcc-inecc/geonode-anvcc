@@ -6,6 +6,7 @@ hashids
 wagtail>=5.2.1
 Django<5,>=4.2.7
 gdal==3.4.1
+pytz
 
 httplib2>=0.22.0
 hyperlink>=21.0.0
