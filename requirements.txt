@@ -54,7 +54,8 @@ geoip2
 
 # Django Apps
 dj-database-url>=2.1.0
-dj-pagination
+# dj-pagination
+-e git+https://github.com/cesar-benjamin/dj-pagination@master#egg=dj-pagination
 django-select2>=8.1.2
 django-floppyforms
 django-forms-bootstrap>=3.1.0
