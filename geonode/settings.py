@@ -39,10 +39,10 @@ from kombu.serialization import register
 
 from . import serializer
 
-from dotenv import load_dotenv
-import os
-load_dotenv()
-print("START")
+# from dotenv import load_dotenv
+# import os
+# load_dotenv()
+# print("START")
 
 
 SILENCED_SYSTEM_CHECKS = [
