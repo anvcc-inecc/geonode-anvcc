@@ -77,7 +77,7 @@ drf-spectacular>=0.26.5
 
 # GeoNode org maintained apps.
 -e git+https://github.com/cesar-benjamin/geonode-mapstore-client.git@4.1.x#egg=django_geonode_mapstore_client
--e git+https://github.com/cesar-benjamin/geonode-importer.git@1.0.6-alpha5#egg=geonode-importer
+-e git+https://github.com/cesar-benjamin/geonode-importer.git@1.0.6-alpha6#egg=geonode-importer
 django-avatar
 # geonode-oauth-toolkit
 django-oauth-toolkit
