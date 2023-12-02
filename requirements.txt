@@ -79,7 +79,8 @@ pinax-ratings>=4.0.0
 django-avatar
 geonode-oauth-toolkit
 geonode-user-messages
-geonode-announcements
+# geonode-announcements
+pinax-announcements
 # geonode-django-activity-stream
 django-activity-stream
 gn-arcrest
