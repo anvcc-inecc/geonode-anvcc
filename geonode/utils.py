@@ -57,7 +57,7 @@ from geonode.upload.api.exceptions import GeneralUploadException
 
 from django.conf import settings
 from django.db.models import signals
-from django.utils.http import is_safe_url
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.apps import apps as django_apps
 from django.middleware.csrf import get_token
 from django.http import HttpResponse
@@ -387,7 +387,7 @@ def get_headers(request, url, raw_url, allowed_hosts=[]):
     for _header_key, _header_value in dict(request.headers.copy()).items():
         if _header_key.lower() in FORWARDED_HEADERS:
             headers[_header_key] = _header_value
-    if settings.SESSION_COOKIE_NAME in request.COOKIES and is_safe_url(url=raw_url, allowed_hosts=url.hostname):
+    if settings.SESSION_COOKIE_NAME in request.COOKIES and url_has_allowed_host_and_scheme(url=raw_url, allowed_hosts=url.hostname):
         cookies = request.META["HTTP_COOKIE"]
 
     for cook in request.COOKIES:
