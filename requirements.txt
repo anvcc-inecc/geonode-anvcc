@@ -77,8 +77,10 @@ pinax-ratings>=4.0.0
 -e git+https://github.com/cesar-benjamin/geonode-mapstore-client.git@4.1.x#egg=django_geonode_mapstore_client
 -e git+https://github.com/cesar-benjamin/geonode-importer.git@1.0.6-alpha4#egg=geonode-importer
 django-avatar
-geonode-oauth-toolkit
-geonode-user-messages
+# geonode-oauth-toolkit
+django-oauth-toolkit
+# geonode-user-messages
+django-messages
 # geonode-announcements
 pinax-announcements
 # geonode-django-activity-stream
