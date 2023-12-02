@@ -33,7 +33,6 @@ from tastypie.utils import trailing_slash
 
 from guardian.shortcuts import get_objects_for_user
 
-from django.conf.urls import url
 from django.core.paginator import Paginator, InvalidPage
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
