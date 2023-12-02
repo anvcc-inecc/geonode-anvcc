@@ -39,6 +39,12 @@ from kombu.serialization import register
 
 from . import serializer
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+print("START")
+
+
 SILENCED_SYSTEM_CHECKS = [
     "1_8.W001",
     "fields.W340",
@@ -813,6 +819,7 @@ MIDDLEWARE = (
     "django_user_agents.middleware.UserAgentMiddleware",
     "geonode.base.middleware.MaintenanceMiddleware",
     "geonode.base.middleware.ReadOnlyMiddleware",  # a Middleware enabling Read Only mode of Geonode
+    "allauth.account.middleware.AccountMiddleware", # required by allauth
 )
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
@@ -845,9 +852,8 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-if "announcements" in INSTALLED_APPS:
+if "pinax.announcements" in INSTALLED_APPS:
     AUTHENTICATION_BACKENDS += ("pinax.announcements.auth_backends.AnnouncementPermissionsBackend",)
-    
 
 OAUTH2_PROVIDER = {
     "SCOPES": {
