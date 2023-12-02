@@ -76,7 +76,7 @@ pinax-ratings>=4.0.0
 # GeoNode org maintained apps.
 -e git+https://github.com/cesar-benjamin/geonode-mapstore-client.git@4.1.x#egg=django_geonode_mapstore_client
 -e git+https://github.com/cesar-benjamin/geonode-importer.git@1.0.6-alpha4#egg=geonode-importer
-geonode-avatar
+django-avatar
 geonode-oauth-toolkit
 geonode-user-messages
 geonode-announcements
