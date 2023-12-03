@@ -389,13 +389,22 @@ if MEMCACHED_ENABLED:
         "LOCATION": MEMCACHED_LOCATION,
     }
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
 # Define the STATICFILES_STORAGE accordingly
 if not DEBUG and CACHE_BUSTING_STATIC_ENABLED:
-    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"}}
+    STORAGES["staticfiles"] = {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"}
 elif COMPRESS_STATIC_FILES:
-    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}}
+    STORAGES["staticfiles"] = {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}
 else:
-    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.StaticFilesStorage"}}
+    STORAGES["staticfiles"] = {"BACKEND": "whitenoise.storage.StaticFilesStorage"}
 
 
 GEONODE_CORE_APPS = (
