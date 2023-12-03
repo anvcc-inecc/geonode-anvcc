@@ -773,7 +773,6 @@ CONTEXT_PROCESSORS = [
     "django.template.context_processors.static",
     "django.contrib.auth.context_processors.auth",
     "django.contrib.messages.context_processors.messages",
-    "django.contrib.auth.context_processors.auth",
     "geonode.context_processors.resource_urls",
     "geonode.themes.context_processors.custom_theme",
 ]
