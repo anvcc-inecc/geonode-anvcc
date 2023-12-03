@@ -495,7 +495,7 @@ INSTALLED_APPS = (
     # Social
     "avatar",
     "pinax.ratings",
-    "pinax.announcements",
+    "announcements",
     "actstream",
     "user_messages",
     "tastypie",
@@ -851,8 +851,8 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-if "pinax.announcements" in INSTALLED_APPS:
-    AUTHENTICATION_BACKENDS += ("pinax.announcements.auth_backends.AnnouncementPermissionsBackend",)
+if "announcements" in INSTALLED_APPS:
+    AUTHENTICATION_BACKENDS += ("announcements.auth_backends.AnnouncementPermissionsBackend",)
 
 OAUTH2_PROVIDER = {
     "SCOPES": {

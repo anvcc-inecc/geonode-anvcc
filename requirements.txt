@@ -84,11 +84,9 @@ django-avatar
 # geonode-oauth-toolkit
 django-oauth-toolkit
 # geonode-user-messages
-# django-user-messages
 -e git+https://github.com/cesar-benjamin/geonode-user-messages.git@master#egg=geonode-user-messages
 # geonode-announcements
-# pinax-announcements
--e git+https://github.com/cesar-benjamin/pinax-announcements.git@master#egg=pinax-announcements
+-e git+https://github.com/cesar-benjamin/geonode-announcements.git@master#egg=geonode-announcements
 # geonode-django-activity-stream
 django-activity-stream
 gn-arcrest
