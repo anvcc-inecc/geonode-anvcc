@@ -391,11 +391,12 @@ if MEMCACHED_ENABLED:
 
 # Define the STATICFILES_STORAGE accordingly
 if not DEBUG and CACHE_BUSTING_STATIC_ENABLED:
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"}}
 elif COMPRESS_STATIC_FILES:
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}}
 else:
-    STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
+    STORAGES = {"staticfiles": {"BACKEND": "whitenoise.storage.StaticFilesStorage"}}
+
 
 GEONODE_CORE_APPS = (
     # GeoNode internal apps
@@ -820,9 +821,6 @@ MIDDLEWARE = (
     "geonode.base.middleware.ReadOnlyMiddleware",  # a Middleware enabling Read Only mode of Geonode
     "allauth.account.middleware.AccountMiddleware", # required by allauth
 )
-
-if not DEBUG:
-    MIDDLEWARE += ("django.middleware.csrf.CsrfViewMiddleware",)
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
@@ -2334,3 +2332,10 @@ FACET_PROVIDERS = (
     "geonode.facets.providers.thesaurus.ThesaurusFacetProvider",
     "geonode.facets.providers.region.RegionFacetProvider",
 )
+
+#######################
+# Nuevo
+#######################
+
+if not DEBUG:
+    MIDDLEWARE += ("django.middleware.csrf.CsrfViewMiddleware",)

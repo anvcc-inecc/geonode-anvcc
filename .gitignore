@@ -5,7 +5,7 @@ build
 target
 pip-log.txt
 MANIFEST
-dist
+/dist/
 .idea/
 .vscode/
 .pytest_cache/
