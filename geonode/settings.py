@@ -809,7 +809,7 @@ MIDDLEWARE = (
     # The setting below makes it possible to serve different languages per
     # user depending on things like headers in HTTP requests.
     "django.middleware.locale.LocaleMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -820,6 +820,9 @@ MIDDLEWARE = (
     "geonode.base.middleware.ReadOnlyMiddleware",  # a Middleware enabling Read Only mode of Geonode
     "allauth.account.middleware.AccountMiddleware", # required by allauth
 )
+
+if not DEBUG:
+    MIDDLEWARE += ("django.middleware.csrf.CsrfViewMiddleware",)
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
