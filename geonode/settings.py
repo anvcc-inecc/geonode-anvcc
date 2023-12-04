@@ -855,7 +855,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = ast.literal_eval(os.environ.get("SECURE_HSTS_IN
 # Replacement of the default authentication backend in order to support
 # permissions per object.
 AUTHENTICATION_BACKENDS = (
-    # 'oauth2_provider.backends.OAuth2Backend',
+    'oauth2_provider.backends.OAuth2Backend',
     "django.contrib.auth.backends.ModelBackend",
     "guardian.backends.ObjectPermissionBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -1049,9 +1049,9 @@ OGC_SERVER = {
         "GEOFENCE_SECURITY_ENABLED": GEOFENCE_SECURITY_ENABLED,
         "GEOFENCE_URL": os.getenv("GEOFENCE_URL", "internal:/"),
         "GEOFENCE_TIMEOUT": int(os.getenv("GEOFENCE_TIMEOUT", os.getenv("OGC_REQUEST_TIMEOUT", "60"))),
-        "WMST_ENABLED": ast.literal_eval(os.getenv("WMST_ENABLED", "False")),
+        "WMST_ENABLED": ast.literal_eval(os.getenv("WMST_ENABLED", "True")),
         "BACKEND_WRITE_ENABLED": ast.literal_eval(os.getenv("BACKEND_WRITE_ENABLED", "True")),
-        "WPS_ENABLED": ast.literal_eval(os.getenv("WPS_ENABLED", "False")),
+        "WPS_ENABLED": ast.literal_eval(os.getenv("WPS_ENABLED", "True")),
         "LOG_FILE": f"{os.path.abspath(os.path.join(PROJECT_ROOT, os.pardir))}/geoserver/data/logs/geoserver.log",
         # Set to name of database in DATABASES dictionary to enable
         # 'datastore',
