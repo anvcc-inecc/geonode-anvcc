@@ -82,8 +82,8 @@ drf-spectacular>=0.26.5
 -e git+https://github.com/cesar-benjamin/geonode-mapstore-client.git@4.1.x#egg=django_geonode_mapstore_client
 -e git+https://github.com/cesar-benjamin/geonode-importer.git@1.0.6-alpha6#egg=geonode-importer
 django-avatar
-geonode-oauth-toolkit
-# django-oauth-toolkit
+# geonode-oauth-toolkit
+-e git+https://github.com/cesar-benjamin/geonode-oauth-toolkit@master#egg=geonode-oauth-toolkit
 # geonode-user-messages
 -e git+https://github.com/cesar-benjamin/geonode-user-messages.git@master#egg=geonode-user-messages
 # geonode-announcements
