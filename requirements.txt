@@ -60,7 +60,8 @@ django-select2>=8.1.2
 django-floppyforms
 django-forms-bootstrap>=3.1.0
 # django-autocomplete-light>=3.9.7
--e git+https://github.com/yourlabs/django-autocomplete-light.git@master#egg=django-autocomplete-light
+# -e git+https://github.com/yourlabs/django-autocomplete-light.git@master#egg=django-autocomplete-light
+django-autocomplete-light==3.10.0rc4
 django-invitations>=2.1.0
 django-recaptcha>=4.0.0
 
