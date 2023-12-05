@@ -2,10 +2,12 @@
 psycopg2-binary>=2.9.9
 
 #Niji
+hashids
 wagtail>=5.2.1
 Django<5,>=4.2.7
 gdal==3.4.1
-  
+pytz
+
 httplib2>=0.22.0
 hyperlink>=21.0.0
 Paver>=1.3.4
@@ -52,11 +54,14 @@ geoip2
 
 # Django Apps
 dj-database-url>=2.1.0
-dj-pagination
+# dj-pagination
+-e git+https://github.com/cesar-benjamin/dj-pagination@master#egg=dj-pagination
 django-select2>=8.1.2
 django-floppyforms
 django-forms-bootstrap>=3.1.0
-django-autocomplete-light>=3.9.7
+# django-autocomplete-light>=3.9.7
+# -e git+https://github.com/yourlabs/django-autocomplete-light.git@master#egg=django-autocomplete-light
+django-autocomplete-light==3.10.0rc4
 django-invitations>=2.1.0
 django-recaptcha>=4.0.0
 
@@ -71,18 +76,19 @@ drf-spectacular>=0.26.5
 -e git+https://github.com/cesar-benjamin/dynamic-rest.git@master#egg=dynamic-rest
 
 -e git+https://github.com/cesar-benjamin/pinax-notifications.git@master#egg=pinax-notifications
-pinax-ratings>=4.0.0
+# pinax-ratings>=4.0.0
+-e git+https://github.com/cesar-benjamin/pinax-ratings.git@master#egg=pinax-ratings
 
 # GeoNode org maintained apps.
 -e git+https://github.com/cesar-benjamin/geonode-mapstore-client.git@4.1.x#egg=django_geonode_mapstore_client
--e git+https://github.com/cesar-benjamin/geonode-importer.git@1.0.6-alpha4#egg=geonode-importer
+-e git+https://github.com/cesar-benjamin/geonode-importer.git@1.0.6-alpha6#egg=geonode-importer
 django-avatar
 # geonode-oauth-toolkit
-django-oauth-toolkit
+-e git+https://github.com/cesar-benjamin/geonode-oauth-toolkit@master#egg=geonode-oauth-toolkit
 # geonode-user-messages
-django-messages
+-e git+https://github.com/cesar-benjamin/geonode-user-messages.git@master#egg=geonode-user-messages
 # geonode-announcements
-pinax-announcements
+-e git+https://github.com/cesar-benjamin/geonode-announcements.git@master#egg=geonode-announcements
 # geonode-django-activity-stream
 django-activity-stream
 gn-arcrest

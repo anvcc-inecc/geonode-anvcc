@@ -19,7 +19,7 @@
 
 import django
 from django.urls import path
-from django.conf.urls import include, url
+from django.urls import include, re_path
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
@@ -96,7 +96,7 @@ urlpatterns += [
     re_path(r"^avatar/", include("avatar.urls")),
     re_path(r"^ratings/", include("pinax.ratings.urls", namespace="pinax_ratings")),
     re_path(r"^activity/", include("actstream.urls")),
-    re_path(r"^announcements/", include("pinax.announcements.urls", namespace="pinax_announcements")),
+    re_path(r"^announcements/", include("announcements.urls")),
     re_path(r"^messages/", include("user_messages.urls")),
     re_path(r"^social/", include("geonode.social.urls")),
     re_path(r"^security/", include("geonode.security.urls")),

@@ -39,6 +39,12 @@ from kombu.serialization import register
 
 from . import serializer
 
+# from dotenv import load_dotenv
+# import os
+# load_dotenv()
+# print("START")
+
+
 SILENCED_SYSTEM_CHECKS = [
     "1_8.W001",
     "fields.W340",
@@ -383,13 +389,23 @@ if MEMCACHED_ENABLED:
         "LOCATION": MEMCACHED_LOCATION,
     }
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
 # Define the STATICFILES_STORAGE accordingly
 if not DEBUG and CACHE_BUSTING_STATIC_ENABLED:
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STORAGES["staticfiles"] = {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"}
 elif COMPRESS_STATIC_FILES:
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+    STORAGES["staticfiles"] = {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}
 else:
-    STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
+    STORAGES["staticfiles"] = {"BACKEND": "whitenoise.storage.StaticFilesStorage"}
+
 
 GEONODE_CORE_APPS = (
     # GeoNode internal apps
@@ -489,7 +505,7 @@ INSTALLED_APPS = (
     # Social
     "avatar",
     "pinax.ratings",
-    "pinax.announcements",
+    "announcements",
     "actstream",
     "user_messages",
     "tastypie",
@@ -767,7 +783,6 @@ CONTEXT_PROCESSORS = [
     "django.template.context_processors.static",
     "django.contrib.auth.context_processors.auth",
     "django.contrib.messages.context_processors.messages",
-    "django.contrib.auth.context_processors.auth",
     "geonode.context_processors.resource_urls",
     "geonode.themes.context_processors.custom_theme",
 ]
@@ -804,7 +819,7 @@ MIDDLEWARE = (
     # The setting below makes it possible to serve different languages per
     # user depending on things like headers in HTTP requests.
     "django.middleware.locale.LocaleMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -813,6 +828,7 @@ MIDDLEWARE = (
     "django_user_agents.middleware.UserAgentMiddleware",
     "geonode.base.middleware.MaintenanceMiddleware",
     "geonode.base.middleware.ReadOnlyMiddleware",  # a Middleware enabling Read Only mode of Geonode
+    "allauth.account.middleware.AccountMiddleware", # required by allauth
 )
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
@@ -839,15 +855,14 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = ast.literal_eval(os.environ.get("SECURE_HSTS_IN
 # Replacement of the default authentication backend in order to support
 # permissions per object.
 AUTHENTICATION_BACKENDS = (
-    # 'oauth2_provider.backends.OAuth2Backend',
+    'oauth2_provider.backends.OAuth2Backend',
     "django.contrib.auth.backends.ModelBackend",
     "guardian.backends.ObjectPermissionBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 if "announcements" in INSTALLED_APPS:
-    AUTHENTICATION_BACKENDS += ("pinax.announcements.auth_backends.AnnouncementPermissionsBackend",)
-    
+    AUTHENTICATION_BACKENDS += ("announcements.auth_backends.AnnouncementPermissionsBackend",)
 
 OAUTH2_PROVIDER = {
     "SCOPES": {
@@ -1034,9 +1049,9 @@ OGC_SERVER = {
         "GEOFENCE_SECURITY_ENABLED": GEOFENCE_SECURITY_ENABLED,
         "GEOFENCE_URL": os.getenv("GEOFENCE_URL", "internal:/"),
         "GEOFENCE_TIMEOUT": int(os.getenv("GEOFENCE_TIMEOUT", os.getenv("OGC_REQUEST_TIMEOUT", "60"))),
-        "WMST_ENABLED": ast.literal_eval(os.getenv("WMST_ENABLED", "False")),
+        "WMST_ENABLED": ast.literal_eval(os.getenv("WMST_ENABLED", "True")),
         "BACKEND_WRITE_ENABLED": ast.literal_eval(os.getenv("BACKEND_WRITE_ENABLED", "True")),
-        "WPS_ENABLED": ast.literal_eval(os.getenv("WPS_ENABLED", "False")),
+        "WPS_ENABLED": ast.literal_eval(os.getenv("WPS_ENABLED", "True")),
         "LOG_FILE": f"{os.path.abspath(os.path.join(PROJECT_ROOT, os.pardir))}/geoserver/data/logs/geoserver.log",
         # Set to name of database in DATABASES dictionary to enable
         # 'datastore',
@@ -1397,8 +1412,8 @@ if CREATE_LAYER:
 RECAPTCHA_ENABLED = ast.literal_eval(os.environ.get("RECAPTCHA_ENABLED", "False"))
 
 if RECAPTCHA_ENABLED:
-    if "captcha" not in INSTALLED_APPS:
-        INSTALLED_APPS += ("captcha",)
+    if "django_recaptcha" not in INSTALLED_APPS:
+        INSTALLED_APPS += ("django_recaptcha",)
     ACCOUNT_SIGNUP_FORM_CLASS = os.getenv(
         "ACCOUNT_SIGNUP_FORM_CLASS", "geonode.people.forms.AllauthReCaptchaSignupForm"
     )
@@ -2326,3 +2341,10 @@ FACET_PROVIDERS = (
     "geonode.facets.providers.thesaurus.ThesaurusFacetProvider",
     "geonode.facets.providers.region.RegionFacetProvider",
 )
+
+#######################
+# Nuevo
+#######################
+
+if not DEBUG:
+    MIDDLEWARE += ("django.middleware.csrf.CsrfViewMiddleware",)

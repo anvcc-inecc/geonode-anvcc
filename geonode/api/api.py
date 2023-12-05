@@ -22,7 +22,6 @@ import time
 
 from django.apps import apps
 from django.db.models import Q
-from django.conf.urls import url
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.urls import reverse

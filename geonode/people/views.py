@@ -87,7 +87,9 @@ def profile_edit(request, username=None):
         return HttpResponseForbidden("You are not allowed to edit other users profile")
 
 
-@login_required
+# @login_required
+# TODO: Niji: I think this is a bug, the login_required decorator is not needed here
+
 def profile_detail(request, username):
     profile = get_object_or_404(get_user_model(), Q(is_active=True), username=username)
     # combined queryset from each model content type

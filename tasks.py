@@ -379,31 +379,16 @@ def prepare(ctx):
 @task
 def fixtures(ctx):
     print("**************************fixtures********************************")
-    ctx.run(
-        f"python manage.py loaddata sample_admin \
---settings={_localsettings()}",
-        pty=True,
-    )
-    ctx.run(
-        f"python manage.py loaddata /tmp/default_oauth_apps_docker.json \
---settings={_localsettings()}",
-        pty=True,
-    )
-    ctx.run(
-        f"python manage.py loaddata geonode/base/fixtures/initial_data.json \
---settings={_localsettings()}",
-        pty=True,
-    )
+    ctx.run(f"python manage.py loaddata sample_admin --settings={_localsettings()}", pty=True,)
+    ctx.run(f"python manage.py loaddata /tmp/default_oauth_apps_docker.json --settings={_localsettings()}", pty=True,)
+    ctx.run(f"python manage.py loaddata geonode/base/fixtures/initial_data.json --settings={_localsettings()}", pty=True,)
 
 
 @task
 def collectstatic(ctx):
     print("************************static artifacts******************************")
-    ctx.run(
-        f"django-admin.py collectstatic --noinput \
---settings={_localsettings()}",
-        pty=True,
-    )
+    ctx.run(f"python manage.py collectstatic --noinput --settings={_localsettings()}", pty=True,)
+    # ctx.run(f"python manage.py collectstatic --noinput --settings={_localsettings()}", pty=True,)
 
 
 @task
@@ -419,10 +404,7 @@ def monitoringfixture(ctx):
     _prepare_monitoring_fixture()
     try:
         ctx.run(
-            f"django-admin.py loaddata /tmp/default_monitoring_apps_docker.json \
---settings={_localsettings()}",
-            pty=True,
-        )
+            f"python manage.py loaddata /tmp/default_monitoring_apps_docker.json --settings={_localsettings()}", pty=True,)
     except Exception as e:
         logger.error(f"ERROR installing monitoring fixture: {str(e)}")
 
@@ -434,21 +416,14 @@ def updateadmin(ctx):
     _prepare_admin_fixture(
         os.environ.get("ADMIN_PASSWORD", "admin"), os.environ.get("ADMIN_EMAIL", "admin@example.org")
     )
-    ctx.run(
-        f"django-admin.py loaddata /tmp/django_admin_docker.json \
---settings={_localsettings()}",
-        pty=True,
-    )
+    ctx.run(f"python manage.py loaddata /tmp/django_admin_docker.json --settings={_localsettings()}", pty=True,)
 
 
 @task
 def collectmetrics(ctx):
     print("************************collect metrics******************************")
     ctx.run(
-        f"python -W ignore manage.py collect_metrics  \
---settings={_localsettings()} -n -t xml",
-        pty=True,
-    )
+        f"python -W ignore manage.py collect_metrics --settings={_localsettings()} -n -t xml", pty=True,)
 
 
 @task
@@ -639,7 +614,7 @@ def _prepare_monitoring_fixture():
         geoserver_ip = socket.gethostbyname("geoserver")
     except Exception:
         geoserver_ip = pub_ip
-    d = "1970-01-01 00:00:00"
+    d = "1970-01-01T00:00:00-00:00"
     default_fixture = [
         {
             "fields": {"active": True, "ip": str(geonode_ip), "name": str(os.environ["MONITORING_HOST_NAME"])},
