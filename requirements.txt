@@ -73,7 +73,7 @@ drf-extensions>=0.7.1
 drf-writable-nested>=0.7.0
 drf-spectacular>=0.26.5
 # dynamic-rest==2.1.2
--e git+https://github.com/cesar-benjamin/drf-dynamic-rest@2023.11-alpha15#egg=drf-dynamic-rest
+-e git+https://github.com/cesar-benjamin/dynamic-rest.git@master#egg=dynamic-rest
 
 -e git+https://github.com/cesar-benjamin/pinax-notifications.git@master#egg=pinax-notifications
 # pinax-ratings>=4.0.0
