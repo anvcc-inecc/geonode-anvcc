@@ -14,5 +14,5 @@
 		"username": "admin"
 	},
 	"model": "people.Profile",
-	"pk": 1
+	"pk": 1000
 }]
