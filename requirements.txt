@@ -167,3 +167,5 @@ wandb
 # protobuf este ya está
 mako
 # jwcrypto este ya está
+
+sentry-sdk

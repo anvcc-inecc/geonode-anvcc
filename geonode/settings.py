@@ -2345,3 +2345,16 @@ FACET_PROVIDERS = (
 
 if not DEBUG:
     MIDDLEWARE += ("django.middleware.csrf.CsrfViewMiddleware",)
+
+import sentry_sdk
+
+sentry_sdk.init(
+    dsn="https://573d3d257d9a855a71a4e566b63f9b95@o4504270969831424.ingest.sentry.io/4506486552920064",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
