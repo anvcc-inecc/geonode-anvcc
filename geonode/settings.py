@@ -1570,11 +1570,8 @@ if GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY == "mapstore":
     MAPSTORE_BASELAYERS_SOURCES = os.environ.get("MAPSTORE_BASELAYERS_SOURCES", {})
 
     MAPSTORE_DEFAULT_LANGUAGES = (
-        ("de-de", "Deutsch"),
         ("en-us", "English"),
         ("es-es", "Español"),
-        ("fr-fr", "Français"),
-        ("it-it", "Italiano"),
     )
 
     if os.getenv("LANGUAGES"):
@@ -1588,7 +1585,7 @@ if GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY == "mapstore":
     # The default mapstore client compiles the translations json files in the /static/mapstore directory
     # gn-translations are the custom translations for the client and ms-translations are the translations from the core framework
     MAPSTORE_TRANSLATIONS_PATH = os.environ.get(
-        "MAPSTORE_TRANSLATIONS_PATH", ["/static/mapstore/ms-translations", "/static/mapstore/gn-translations"]
+        "MAPSTORE_TRANSLATIONS_PATH", [f"{FORCE_SCRIPT_NAME}/static/mapstore/ms-translations", f"{FORCE_SCRIPT_NAME}/static/mapstore/gn-translations"]
     )
 
     # list of projections available in the mapstore client
@@ -1640,7 +1637,7 @@ if GEONODE_CLIENT_LAYER_PREVIEW_LIBRARY == "mapstore":
     MAPSTORE_PLUGINS_CONFIG_PATCH_RULES = []
 
     # Extensions path to use in importing custom extensions into geonode
-    MAPSTORE_EXTENSIONS_FOLDER_PATH = "/static/mapstore/extensions/"
+    MAPSTORE_EXTENSIONS_FOLDER_PATH = "/geonode/static/mapstore/extensions/"
 
     # Supported Dataset file types for uploading Datasets. This setting is being from from the client
 
