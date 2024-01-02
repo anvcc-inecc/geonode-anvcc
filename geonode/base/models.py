@@ -1601,7 +1601,8 @@ class ResourceBase(PolymorphicModel, PermissionLevelMixin, ItemBase):
                 if not parsed.netloc:
                     # assuming is a relative path to current site
                     site_url = settings.SITEURL.rstrip("/") if settings.SITEURL.startswith("http") else settings.SITEURL
-                    url = urljoin(site_url, url)
+                    path_url = settings.FORCE_SCRIPT_NAME.strip('/') + '/' + settings.MEDIAFILES_LOCATION.strip('/') + '/' + url
+                    url = urljoin(site_url, path_url)
 
                 if thumb_size(upload_path) == 0:
                     raise Exception("Generated thumbnail image is zero size")
