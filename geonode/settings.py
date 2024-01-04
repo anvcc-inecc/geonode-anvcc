@@ -2096,10 +2096,10 @@ if MONITORING_ENABLED:
 
     # skip certain paths to not to mud stats too much
     MONITORING_SKIP_PATHS = (
-        "/api/o/",
-        "/monitoring/",
-        "/admin",
-        "/jsi18n",
+        "/geonode/api/o/",
+        "/geonode/monitoring/",
+        "/geonode/admin",
+        "/geonode/jsi18n",
         STATIC_URL,
         MEDIA_URL,
         re.compile("^/[a-z]{2}/admin/"),
