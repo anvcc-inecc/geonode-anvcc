@@ -204,7 +204,7 @@ var requirejs, require, define;
                 //config to speed up normalize(), which
                 //will run faster if there is no default.
                 waitSeconds: 7,
-                baseUrl: './',
+                baseUrl: staticUrl,
                 paths: {},
                 bundles: {},
                 pkgs: {},
