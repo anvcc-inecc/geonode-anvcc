@@ -123,7 +123,7 @@ class MapViewSet(DynamicModelViewSet):
             uuid=str(uuid4()),
         )
 
-        for layer in instance.maplayers():
+        for layer in instance.maplayers.all():
             if not layer.dataset:
                 layer.dataset = Dataset.objects.get(alternate=layer.name)
                 layer.save()
@@ -155,7 +155,7 @@ class MapViewSet(DynamicModelViewSet):
 
         instance = serializer.save()
 
-        for layer in instance.maplayers():
+        for layer in instance.maplayers.all():
             if not layer.dataset:
                 layer.dataset = Dataset.objects.get(alternate=layer.name)
                 layer.save()
