@@ -1,0 +1,30 @@
+@mode 'Flat';
+@styleTitle {{ context.title }};
+
+{% if classes %}
+{% for rule, in context.rule %}
+{% if rule.Filter.And %}
+[context.attribute > 2000000] [PERSONS < 4000000] {
+  fill: #FF4D4D;
+}
+{% endif %}
+/* @title {{ class_tittle }} */
+[{{ field }} {{ operator }} {{ value }}] {
+  fill: #{{ fill_color }};
+  fill-opacity: 1;
+}
+{% endfor %}
+{% elif intervals %}
+/* @title Default */
+{
+  fill: #{{ fill_color }};
+  fill-opacity: 1;
+}
+{% else %}
+
+{% endif %}
+
+* {
+  stroke-width: 0.4;
+  stroke: rgba(24, 24, 24, 0.76);
+}
