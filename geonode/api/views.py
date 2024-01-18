@@ -136,7 +136,7 @@ def verify_token(request):
 def roles(request):
     groups = [group.name for group in Group.objects.all()]
     groups.append("admin")
-
+    print("groups", groups)
     return HttpResponse(json.dumps({"groups": groups}), content_type="application/json")
 
 

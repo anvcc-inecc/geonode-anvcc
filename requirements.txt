@@ -80,8 +80,8 @@ drf-spectacular>=0.26.5
 -e git+https://github.com/cesar-benjamin/pinax-ratings.git@master#egg=pinax-ratings
 
 # GeoNode org maintained apps.
--e git+https://github.com/anvcc-inecc/geonode-mapstore-client-anvcc.git@master#egg=django_geonode_mapstore_client
--e git+https://github.com/anvcc-inecc/geonode-importer-anvcc@master#egg=geonode-importer
+-e git+https://github.com/anvcc-inecc/geonode-mapstore-client-anvcc.git@4.1.x.anvcc#egg=django_geonode_mapstore_client
+-e git+https://github.com/anvcc-inecc/geonode-importer-anvcc.git@master#egg=geonode-importer
 django-avatar
 # geonode-oauth-toolkit
 -e git+https://github.com/cesar-benjamin/geonode-oauth-toolkit@master#egg=geonode-oauth-toolkit
@@ -167,5 +167,3 @@ wandb
 # protobuf este ya está
 mako
 # jwcrypto este ya está
-
-sentry-sdk

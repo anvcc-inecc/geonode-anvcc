@@ -43,6 +43,7 @@ from geonode.maps.signals import map_changed_signal
 from geonode.monitoring.models import EventType
 from geonode.resource.manager import resource_manager
 from geonode.utils import resolve_object
+from geonode.layers.models import Dataset
 
 logger = logging.getLogger(__name__)
 
@@ -122,6 +123,11 @@ class MapViewSet(DynamicModelViewSet):
             uuid=str(uuid4()),
         )
 
+        for layer in instance.maplayers.all():
+            if not layer.dataset:
+                layer.dataset = Dataset.objects.get(alternate=layer.name)
+                layer.save()
+
         # events and resouce routines
         self._post_change_routines(
             instance=instance,
@@ -148,6 +154,16 @@ class MapViewSet(DynamicModelViewSet):
         }
 
         instance = serializer.save()
+
+        for layer in instance.maplayers.all():
+            if not layer.dataset:
+                layer.dataset = Dataset.objects.get(alternate=layer.name)
+                layer.save()
+            else:
+                dataset = Dataset.objects.get(alternate=layer.name)
+                if layer.dataset != dataset:
+                    layer.dataset = dataset
+                    layer.save()
 
         # thumbnail, events and resouce routines
         self._post_change_routines(

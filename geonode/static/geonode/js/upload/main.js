@@ -2,6 +2,9 @@
 
 'use strict';
 
+const upload = siteUrl + 'static/geonode/js/upload'
+const templates = siteUrl + 'static/geonode/js/templates'
+
 requirejs.config({
   config: {
      text: {
@@ -13,13 +16,13 @@ requirejs.config({
      },
      waitSeconds: 5
   },
-  baseUrl: staticUrl + 'lib/js',
+  baseUrl: siteUrl + 'static/lib/js',
   shim: {
     'underscore': { exports: '_'}
   },
   paths: {
-    'upload': '../../geonode/js/upload',
-    'templates': '../../geonode/js/templates',
+    'upload': upload,
+    'templates': templates,
     'progress': 'jquery.ajax-progress'
   }
 });

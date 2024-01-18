@@ -819,7 +819,7 @@ MIDDLEWARE = (
     # The setting below makes it possible to serve different languages per
     # user depending on things like headers in HTTP requests.
     "django.middleware.locale.LocaleMiddleware",
-    # "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -2096,10 +2096,10 @@ if MONITORING_ENABLED:
 
     # skip certain paths to not to mud stats too much
     MONITORING_SKIP_PATHS = (
-        "/api/o/",
-        "/monitoring/",
-        "/admin",
-        "/jsi18n",
+        "/geonode/api/o/",
+        "/geonode/monitoring/",
+        "/geonode/admin",
+        "/geonode/jsi18n",
         STATIC_URL,
         MEDIA_URL,
         re.compile("^/[a-z]{2}/admin/"),
@@ -2337,24 +2337,4 @@ FACET_PROVIDERS = (
     "geonode.facets.providers.users.OwnerFacetProvider",
     "geonode.facets.providers.thesaurus.ThesaurusFacetProvider",
     "geonode.facets.providers.region.RegionFacetProvider",
-)
-
-#######################
-# Nuevo
-#######################
-
-if not DEBUG:
-    MIDDLEWARE += ("django.middleware.csrf.CsrfViewMiddleware",)
-
-import sentry_sdk
-
-sentry_sdk.init(
-    dsn="https://573d3d257d9a855a71a4e566b63f9b95@o4504270969831424.ingest.sentry.io/4506486552920064",
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    traces_sample_rate=1.0,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
 )
