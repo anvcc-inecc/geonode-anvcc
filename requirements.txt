@@ -75,7 +75,7 @@ drf-spectacular>=0.26.5
 # dynamic-rest==2.1.2
 -e git+https://github.com/cesar-benjamin/dynamic-rest.git@master#egg=dynamic-rest
 
--e git+https://github.com/cesar-benjamin/pinax-notifications.git@master#egg=pinax-notifications
+-e git+https://github.com/cesar-benjamin/pinax-notifications.git@django_upgrade#egg=pinax-notifications
 # pinax-ratings>=4.0.0
 -e git+https://github.com/cesar-benjamin/pinax-ratings.git@master#egg=pinax-ratings
 
@@ -86,7 +86,7 @@ django-avatar
 # geonode-oauth-toolkit
 -e git+https://github.com/cesar-benjamin/geonode-oauth-toolkit@master#egg=geonode-oauth-toolkit
 # geonode-user-messages
--e git+https://github.com/cesar-benjamin/geonode-user-messages.git@master#egg=geonode-user-messages
+-e git+https://github.com/cesar-benjamin/geonode-user-messages.git@django_upgrade#egg=geonode-user-messages
 # geonode-announcements
 -e git+https://github.com/cesar-benjamin/geonode-announcements.git@master#egg=geonode-announcements
 # geonode-django-activity-stream
